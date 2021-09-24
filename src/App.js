@@ -34,21 +34,45 @@ class App extends Component{
       console.log("vowelsArray:", vowelsArray)
 
       // your code here!
+      //input ---- words that begin with a vowel
+      //output --- words + "way"
+      //declare variables for vowel using the Regex .match and index of array
       let vowel = "a" || "e" ||"i"||"o"||"u"
-      let pigLatin = str + "way";
+      let pigLatin = str + "way";
+      let pig = str.match(/[y]/gi) || 0;
+      let pigY = str.indexOf(pig[0]);
+      if(vowel.indexOf(str[0])>-1){
+      console.log(pigLatin);
+              return pigLatin;
+            }
+      //input ---- words without vowel
+      //output --- move y to the beginning of word and end with "ay"
+      //declare variables to create piglatin word with substring
+        else if (vowelsArray.length === 0) {
+          let pigLatinY = str.substring(pigY) + str.substring(0,pigY) + "ay";
+          return pigLatinY;
+        }
+      //input ---- words with "qu" in the beginning
+      //output --- move "qu" to the end and begin the word with next vowel and end with "ay"
+      //declare variables to create piglatin word with substring
+      else if (str.substring(0) === "q"){
+                    let firstPig = str.match(/[aeiou]/gi) || 2;
+                    let vowel = str.indexOf(firstPig[1]);
+                    let pigLatinQU = str.substring(vowel) + str.substring(0, vowel) + "ay";
+                    return pigLatinQU;
+                  }
 
-      if(vowel.indexOf(str[0])>-1){
-      console.log(pigLatin);
 
-              return pigLatin;
-            } else {
-              let firstPig = str.match(/[aeiou]/gi) || 0;
-              let vowel = str.indexOf(firstPig[0]);
-              let pigLatin = str.substring(vowel) + str.substring(0, vowel) + "ay";
-              return pigLatin
-            }
-//console.log("str: ", vowels)
 
+        //input ---- words beginning with consonants
+        //output --- move consonants that preceed the first vowel to the end and begin the word with vowel and end with "ay"
+         //declare variables to search for vowels and give index to create piglatin word with substring
+          else {
+              let secondPig = str.match(/[aeiou]/gi) || 0;
+              let vowelPig = str.indexOf(secondPig[0]);
+              let pigLatin = str.substring(vowelPig) + str.substring(0, vowelPig) + "ay";
+              return pigLatin;
+            }
       // Remember: console.log is your friend :)
 
 
